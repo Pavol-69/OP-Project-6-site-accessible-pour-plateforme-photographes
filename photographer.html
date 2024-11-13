@@ -20,7 +20,7 @@
   </head>
   <body id="body_photographer">
     <header id="header_photographer">
-      <a href="./index.html">
+      <a aria-label="Aller à Accueil" href="./index.html">
         <img
           src="assets/images/logo.png"
           class="logo"
@@ -30,12 +30,16 @@
     </header>
     <main id="main_photographer">
       <section class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">
+        <button
+          id="btn_modal"
+          class="contact_button"
+          aria-label="Accéder au formulaire de contact"
+        >
           Contactez-moi
         </button>
       </section>
       <section>
-        <div class="tri">
+        <div class="tri" aria-label="trier par popularité / date / likes">
           <label>Trier par</label>
           <select id="tri_button">
             <option>Popularité</option>
@@ -69,7 +73,11 @@
                 <h2>Contactez-moi</h2>
                 <h2 id="contact_name">Contactez-moi</h2>
               </div>
-              <img src="assets/icons/close.svg" onclick="closeModal()" />
+              <img
+                src="assets/icons/close.svg"
+                id="croix"
+                aria-label="Fermer formulaire de contact"
+              />
             </header>
 
             <form novalidate id="contact_form">
@@ -85,6 +93,7 @@
                     type="text"
                     id="first"
                     name="first"
+                    aria-label="Prénom à renseigner"
                   />
                 </div>
                 <div
@@ -98,6 +107,7 @@
                     type="text"
                     id="last"
                     name="last"
+                    aria-label="Nom à renseigner"
                   />
                 </div>
                 <div class="formData" data-error="Adresse e-mail invalide.">
@@ -107,6 +117,7 @@
                     type="email"
                     id="email"
                     name="email"
+                    aria-label="E-mail à renseigner"
                   />
                 </div>
                 <div
@@ -119,29 +130,33 @@
                     type="text"
                     id="message"
                     name="message"
+                    aria-label="Message à renseigner"
                   ></textarea>
                 </div>
               </div>
               <button id="envoyer" class="contact_button">Envoyer</button>
             </form>
             <div id="thanks_message">
-              <h2>Message envoyé !</h2>
-              <button
-                id="thanks_close"
-                class="contact_button"
-                onclick="closeModal()"
-              >
-                Fermer
-              </button>
+              <h2 aria-label="Message bien envoyé">Message envoyé !</h2>
+              <button id="thanks_close" class="contact_button">Fermer</button>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <script src="/scripts/pages/photographer.js"></script>
-    <script src="/scripts/utils/contactForm.js"></script>
-    <script src="scripts/templates/photographer_header.js"></script>
-    <script src="scripts/templates/photographer_portefolio.js"></script>
-    <script src="scripts/templates/photographer_carrousel.js"></script>
+    <script type="module" src="/scripts/pages/photographer.js"></script>
+    <script type="module" src="/scripts/utils/contactForm.js"></script>
+    <script
+      type="module"
+      src="scripts/templates/photographer_header.js"
+    ></script>
+    <script
+      type="module"
+      src="scripts/templates/photographer_portefolio.js"
+    ></script>
+    <script
+      type="module"
+      src="scripts/templates/photographer_carrousel.js"
+    ></script>
   </body>
 </html>

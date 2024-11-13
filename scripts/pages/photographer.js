@@ -1,3 +1,7 @@
+// Imports
+import { photographerHeaderTemplate } from "../templates/photographer_header.js";
+import { photographerPortefolio } from "../templates/photographer_portefolio.js";
+
 // Code JavaScript lié à la page photographer.html
 
 // Récupération de la valeur de tri choisie + Maj à chaque qu'un autre tri est choisi
@@ -20,15 +24,15 @@ const carrouselCtn = document.getElementById("carrousel_ctn");
 const carrousel = document.getElementById("carrousel_content");
 
 // Nom dans formulaire
-contactName = document.getElementById("contact_name");
+const contactName = document.getElementById("contact_name");
 
 // Fermeture Carrousel quand on clique sur la croix
-closeCarrousel.addEventListener("click", (e) => {
+closeCarrousel.addEventListener("click", () => {
   carrouselCtn.style.display = "none";
 });
 
 let tri = triBtn.value;
-triBtn.addEventListener("change", (e) => {
+triBtn.addEventListener("change", () => {
   tri = triBtn.value;
   const photographerMedia = getPhotographerMedia(
     mediaTri(dataRec.media),
@@ -75,6 +79,12 @@ async function displayPhotographerHeader(info) {
 
   // Remplissage du panel recap
   price.textContent = `${info[0].price}€ / jour`;
+
+  // Attribution du aria-label
+  price.setAttribute(
+    "aria-label",
+    `Prix photographe : ${info[0].price}€ / jour`
+  );
 }
 
 async function displayPhotographerPortefolio(media) {
@@ -109,6 +119,9 @@ async function init() {
 
   // Renseigner du nombre total de likes
   likesPanel.textContent = totLikes;
+
+  // Attribution Aria-label
+  likesPanel.setAttribute("aria-label", `Nombre likes total : ${totLikes}`);
 
   // Renseignement nom dans formulaire de contact
   contactName.innerHTML = photographerInfo[0].name;

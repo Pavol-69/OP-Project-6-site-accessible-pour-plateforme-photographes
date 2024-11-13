@@ -6,12 +6,16 @@ const first = document.getElementById("first");
 const last = document.getElementById("last");
 const email = document.getElementById("email");
 const message = document.getElementById("message");
-const envoyer = document.getElementById("envoyer");
 const formData = document.querySelectorAll(".formData");
+const croix = document.getElementById("croix");
+const fermer = document.getElementById("thanks_close");
+const btnModal = document.getElementById("btn_modal");
 
 function displayModal() {
   contact.style.display = "block";
 }
+
+btnModal.addEventListener("click", () => displayModal());
 
 function closeModal() {
   contact.style.display = "none";
@@ -20,6 +24,9 @@ function closeModal() {
   contactForm.style.display = "flex";
   thanksMessage.style.display = "none";
 }
+
+croix.addEventListener("click", () => closeModal());
+fermer.addEventListener("click", () => closeModal());
 
 contact.addEventListener("submit", (e) => {
   e.preventDefault();

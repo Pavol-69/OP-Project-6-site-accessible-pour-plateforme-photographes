@@ -1,4 +1,4 @@
-function photographerTemplate(data) {
+export function photographerTemplate(data) {
   const { name, portrait, city, country, tagline, price, id } = data;
 
   const picture = `assets/photographers/${portrait}`;
@@ -7,8 +7,10 @@ function photographerTemplate(data) {
     const a = document.createElement("a"); // pour créer le lien vers la page du photographe
     a.href = `http://127.0.0.1:3000/photographer.html?id=${id}`; // on passe l'id du protographe via l'url
     const article = document.createElement("article");
+    a.setAttribute("aria-label", `Accéder au portefolio de ${name}`);
     const img = document.createElement("img");
     img.setAttribute("src", picture);
+    img.setAttribute("alt", `photo profil ${name}`);
     const div = document.createElement("div"); // pour recouper l'image
     const h2 = document.createElement("h2");
     h2.textContent = name;

@@ -1,3 +1,7 @@
+a {
+  color: inherit;
+}
+
 #body_photographer {
   /*Position*/
   margin: 0 auto;

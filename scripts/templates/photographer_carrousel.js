@@ -1,5 +1,5 @@
 // Création de la partie Carrousel
-function makeCarrousel(
+export function makeCarrousel(
   media,
   carrouselCtn,
   carrousel,
@@ -36,9 +36,12 @@ function makeCarrousel(
     mediaCarrousel.setAttribute("controls", "controls");
     source.setAttribute("src", media_path);
     mediaCarrousel.appendChild(source);
+    mediaCarrousel.id = "video_play";
   } else {
     mediaCarrousel.setAttribute("src", media_path);
   }
+
+  mediaCarrousel.setAttribute("alt", title);
 
   imgTitle.textContent = title;
 
@@ -50,21 +53,42 @@ function makeCarrousel(
   carrousel.appendChild(mediaCtn);
   carrousel.appendChild(right);
 
-  // Events avec les boutons
+  // Attribution des Aria-label
+  left.setAttribute("aria-label", "Parcourir vers la gauche");
+  right.setAttribute("aria-label", "Parcourir vers la droite");
+  mediaDiv.setAttribute("aria-label", title);
+  imgTitle.setAttribute("aria-label", `Titre image : ${title}`);
+
+  // Events avec les touches du clavier
   document.onkeydown = checkKey;
   function checkKey(e) {
     if (carrouselCtn.style.display == "flex") {
       if (e.key == "ArrowLeft") {
-        changeCarrousel(-1, mediaDiv);
+        changeCarrousel(-1, mediaDiv); // va vers la gauche si on presse la flèche de gauche
       } else if (e.key == "ArrowRight") {
-        changeCarrousel(1, mediaDiv);
+        changeCarrousel(1, mediaDiv); // va vers la droite si on presse la flèche de gauche
+      } else if (e.key == "Escape") {
+        carrouselCtn.style.display = "none"; // ferme le carrousel si on presse Echap
+      } else if (e.key == " ") {
+        if (media[i].image == undefined) {
+          const myVideo = document.getElementById("video_play");
+
+          // Lit ou met pause la vidéo quand on presse Espace
+          if (myVideo.paused) {
+            myVideo.play();
+          } else {
+            myVideo.pause();
+          }
+        }
+      } else {
+        console.log(e.key);
       }
     }
   }
-  left.addEventListener("click", (e) => {
+  left.addEventListener("click", () => {
     changeCarrousel(-1, mediaDiv, imgTitle);
   });
-  right.addEventListener("click", (e) => {
+  right.addEventListener("click", () => {
     changeCarrousel(1, mediaDiv, imgTitle);
   });
 
@@ -83,13 +107,20 @@ function makeCarrousel(
         mediaCarrousel.setAttribute("controls", "controls");
         source.setAttribute("src", `assets/images/${media[i].video}`);
         mediaCarrousel.appendChild(source);
+        mediaCarrousel.id = "video_play";
       } else {
         mediaCarrousel.setAttribute("src", `assets/images/${media[i].image}`);
       }
+      mediaCarrousel.setAttribute("alt", media[i].title);
+
       mediaDiv.appendChild(mediaCarrousel);
 
       // Màj du titre associé
       imgTitle.innerHTML = media[i].title;
+
+      // Màj des Aria-label
+      mediaDiv.setAttribute("aria-label", media[i].title);
+      imgTitle.setAttribute("aria-label", `Titre image : ${media[i].title}`);
     }
   }
 }

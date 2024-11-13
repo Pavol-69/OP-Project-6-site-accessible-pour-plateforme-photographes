@@ -1,6 +1,6 @@
 // Component pour créer le header photographer de la page associée
 
-function photographerHeaderTemplate(data) {
+export function photographerHeaderTemplate(data) {
   const { name, portrait, city, country, tagline } = data[0]; // récupération des données qui nous intéresse
   const picture = `assets/photographers/${portrait}`; // création du bon lien
 
@@ -19,6 +19,14 @@ function photographerHeaderTemplate(data) {
     h2.textContent = name;
     h3.textContent = `${city}, ${country}`;
     h4.textContent = tagline;
+
+    // Attribution des Aria-labels
+    h2.setAttribute("aria-label", `Nom photographe : ${name}`);
+    h3.setAttribute(
+      "aria-label",
+      `Localisatyion photographe: ${city}, ${country}`
+    );
+    h4.setAttribute("aria-label", `Solgan photographe ${tagline}`);
 
     // Tout est regroupé sous article
     article.appendChild(h2);
