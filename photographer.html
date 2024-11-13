@@ -2,36 +2,146 @@
 <html>
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye - photographe </title>
+    <link href="css/photographer.css" rel="stylesheet" type="text/css" />
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link
+      href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Fisheye - photographe</title>
   </head>
-  <body>
-    <header>
-      <img src="assets/images/logo.png" class="logo" />
+  <body id="body_photographer">
+    <header id="header_photographer">
+      <a href="./index.html">
+        <img
+          src="assets/images/logo.png"
+          class="logo"
+          alt="Fisheye Home page"
+        />
+      </a>
     </header>
-    <main id="main">
-      <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+    <main id="main_photographer">
+      <section class="photograph-header">
+        <button class="contact_button" onclick="displayModal()">
+          Contactez-moi
+        </button>
+      </section>
+      <section>
+        <div class="tri">
+          <label>Trier par</label>
+          <select id="tri_button">
+            <option>Popularité</option>
+            <option>Date</option>
+            <option>Titre</option>
+          </select>
+        </div>
+        <div class="portefolio"></div>
+      </section>
+      <div id="carrousel_ctn">
+        <div id="carrousel_bg"></div>
+        <div id="carrousel">
+          <i id="close_carrousel" class="fa-sharp fa-solid fa-xmark"></i>
+          <div id="carrousel_content"></div>
+        </div>
+      </div>
+      <div id="recap">
+        <div id="pqt_likes">
+          <span id="tot_likes"></span><i class="fa-solid fa-heart"></i>
+        </div>
+        <span id="price"></span>
       </div>
     </main>
-    <div id="contact_modal">
-			<div class="modal">
-				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
-        </header>
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
+    <div id="contact_modal_ctn">
+      <div id="contact_modal_bg"></div>
+      <div>
+        <div id="contact_modal">
+          <div class="modal">
+            <header>
+              <div id="label_ctn">
+                <h2>Contactez-moi</h2>
+                <h2 id="contact_name">Contactez-moi</h2>
+              </div>
+              <img src="assets/icons/close.svg" onclick="closeModal()" />
+            </header>
+
+            <form novalidate id="contact_form">
+              <div class="ctn">
+                <div
+                  class="formData"
+                  data-error="Veuillez renseigner un prénom."
+                  data-error-1="Le prénom doit au moins faire 2 caractères de long."
+                >
+                  <label>Prénom</label>
+                  <input
+                    class="text-control"
+                    type="text"
+                    id="first"
+                    name="first"
+                  />
+                </div>
+                <div
+                  class="formData"
+                  data-error="Veuillez renseigner un nom."
+                  data-error-1="Le nom doit au moins faire 2 caractères de long."
+                >
+                  <label>Nom</label>
+                  <input
+                    class="text-control"
+                    type="text"
+                    id="last"
+                    name="last"
+                  />
+                </div>
+                <div class="formData" data-error="Adresse e-mail invalide.">
+                  <label>Email</label>
+                  <input
+                    class="text-control"
+                    type="email"
+                    id="email"
+                    name="email"
+                  />
+                </div>
+                <div
+                  class="formData"
+                  data-error="Veuillez renseigner un message d'au moins 10 caractères."
+                >
+                  <label>Votre message</label>
+                  <textarea
+                    class="message text-control"
+                    type="text"
+                    id="message"
+                    name="message"
+                  ></textarea>
+                </div>
+              </div>
+              <button id="envoyer" class="contact_button">Envoyer</button>
+            </form>
+            <div id="thanks_message">
+              <h2>Message envoyé !</h2>
+              <button
+                id="thanks_close"
+                class="contact_button"
+                onclick="closeModal()"
+              >
+                Fermer
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
+    <script src="scripts/templates/photographer_header.js"></script>
+    <script src="scripts/templates/photographer_portefolio.js"></script>
+    <script src="scripts/templates/photographer_carrousel.js"></script>
   </body>
 </html>
