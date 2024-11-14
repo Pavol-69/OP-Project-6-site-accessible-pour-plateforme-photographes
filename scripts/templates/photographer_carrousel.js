@@ -7,19 +7,23 @@ export function makeCarrousel(
   carrousel,
   media_path,
   title,
-  image,
-  i
+  i,
+  scroll
 ) {
   // Affichage du Carrousel
   carrouselCtn.style.display = "flex";
 
+  // On empêche le scroll le temps qu'on est sur le carrousel
+  document.body.style.position = "fixed";
+  document.body.style.top = `-${scroll}px`;
+  console.log(scroll);
+
   // On efface tout ce qu'il y a à l'intérieur pou repartir de 0
   carrousel.innerHTML = "";
+  const mediaConstructCarrousel = new MediaFactory(media[i]);
 
   // Création des différents éléments
-  const mediaCarrousel = document.createElement(
-    `${image === undefined ? "video" : "img"}` // On adapte si image ou video
-  );
+  const mediaCarrousel = document.createElement(mediaConstructCarrousel._html);
   const left = document.createElement("i");
   const mediaCtn = document.createElement("div");
   const right = document.createElement("i");
@@ -33,7 +37,7 @@ export function makeCarrousel(
   mediaDiv.id = "media";
 
   // Remplissage des éléments
-  if (image == undefined) {
+  if (mediaConstructCarrousel._html == "video") {
     const source = document.createElement("source");
     mediaCarrousel.setAttribute("controls", "controls");
     source.setAttribute("src", media_path);
@@ -71,6 +75,10 @@ export function makeCarrousel(
         changeCarrousel(1, mediaDiv); // va vers la droite si on presse la flèche de gauche
       } else if (e.key == "Escape") {
         carrouselCtn.style.display = "none"; // ferme le carrousel si on presse Echap
+        const scrollY = document.body.style.top;
+        document.body.style.position = "";
+        document.body.style.top = "";
+        window.scrollTo(0, parseInt(scrollY || "0") * -1);
       } else if (e.key == " ") {
         if (media[i].image == undefined) {
           const myVideo = document.getElementById("video_play");

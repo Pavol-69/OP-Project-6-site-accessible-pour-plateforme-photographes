@@ -29,6 +29,11 @@ const contactName = document.getElementById("contact_name");
 // Fermeture Carrousel quand on clique sur la croix
 closeCarrousel.addEventListener("click", () => {
   carrouselCtn.style.display = "none";
+  // On remet le scroll quand on quitte le carrousel
+  const scrollY = document.body.style.top;
+  document.body.style.position = "";
+  document.body.style.top = "";
+  window.scrollTo(0, parseInt(scrollY || "0") * -1);
 });
 
 let tri = triBtn.value;

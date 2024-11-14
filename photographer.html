@@ -40,7 +40,7 @@
       </section>
       <section>
         <div class="tri" aria-label="trier par popularité / date / likes">
-          <label>Trier par</label>
+          <label for="tri_button">Trier par</label>
           <select id="tri_button">
             <option>Popularité</option>
             <option>Date</option>
@@ -76,7 +76,7 @@
               <img
                 src="assets/icons/close.svg"
                 id="croix"
-                aria-label="Fermer formulaire de contact"
+                alt="Fermer formulaire de contact"
               />
             </header>
 
@@ -87,7 +87,7 @@
                   data-error="Veuillez renseigner un prénom."
                   data-error-1="Le prénom doit au moins faire 2 caractères de long."
                 >
-                  <label>Prénom</label>
+                  <label for="first">Prénom</label>
                   <input
                     class="text-control"
                     type="text"
@@ -101,7 +101,7 @@
                   data-error="Veuillez renseigner un nom."
                   data-error-1="Le nom doit au moins faire 2 caractères de long."
                 >
-                  <label>Nom</label>
+                  <label for="last">Nom</label>
                   <input
                     class="text-control"
                     type="text"
@@ -111,7 +111,7 @@
                   />
                 </div>
                 <div class="formData" data-error="Adresse e-mail invalide.">
-                  <label>Email</label>
+                  <label for="email">Email</label>
                   <input
                     class="text-control"
                     type="email"
@@ -124,10 +124,9 @@
                   class="formData"
                   data-error="Veuillez renseigner un message d'au moins 10 caractères."
                 >
-                  <label>Votre message</label>
+                  <label for="message">Votre message</label>
                   <textarea
                     class="message text-control"
-                    type="text"
                     id="message"
                     name="message"
                     aria-label="Message à renseigner"

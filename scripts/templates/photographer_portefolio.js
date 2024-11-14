@@ -84,8 +84,8 @@ export function photographerPortefolio(
         carrousel,
         media_path,
         title,
-        mediaConstruct,
-        i
+        i,
+        window.scrollY
       )
     );
 
