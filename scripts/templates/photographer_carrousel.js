@@ -1,3 +1,5 @@
+import { MediaFactory } from "../Factories/media_factory.js";
+
 // Création de la partie Carrousel
 export function makeCarrousel(
   media,
@@ -98,11 +100,12 @@ export function makeCarrousel(
       i = i + dir;
       // Màj de l'image ou de la vidéo
       mediaDiv.innerHTML = "";
+      const mediaConstructCarrousel = new MediaFactory(media[i]);
       const mediaCarrousel = document.createElement(
-        `${media[i].image === undefined ? "video" : "img"}` // On adapte si image ou video
+        mediaConstructCarrousel._html
       );
 
-      if (media[i].image == undefined) {
+      if (mediaConstructCarrousel._html == "video") {
         const source = document.createElement("source");
         mediaCarrousel.setAttribute("controls", "controls");
         source.setAttribute("src", `assets/images/${media[i].video}`);

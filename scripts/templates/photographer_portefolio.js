@@ -2,6 +2,7 @@
 
 // Imports
 import { makeCarrousel } from "./photographer_carrousel.js";
+import { MediaFactory } from "../Factories/media_factory.js";
 
 export function photographerPortefolio(
   media,
@@ -10,8 +11,9 @@ export function photographerPortefolio(
   carrouselCtn,
   carrousel
 ) {
-  const { title, likes, image, video } = media[i]; // récupération des données qui nous intéresse
-  const media_path = `assets/images/${image === undefined ? video : image}`; // création du bon lien, en faisant bien la différence entre image et video
+  const { title, likes } = media[i]; // récupération des données qui nous intéresse
+  const mediaConstruct = new MediaFactory(media[i]);
+  const media_path = `assets/images/${mediaConstruct._path}`; // création du bon lien, en faisant bien la différence entre image et video
   var like = 0;
   var totLikes = likes;
 
@@ -20,9 +22,7 @@ export function photographerPortefolio(
     // Création des éléments
     const article = document.createElement("article");
     const aTab = document.createElement("a");
-    const divMedia = document.createElement(
-      `${image === undefined ? "video" : "img"}` // On adapte si image ou video
-    );
+    const divMedia = document.createElement(mediaConstruct._html);
     const ctn = document.createElement("div");
     const likesCtn = document.createElement("div");
     const h3 = document.createElement("h3");
@@ -78,7 +78,15 @@ export function photographerPortefolio(
 
     // Ouverture Carrousel quand on clique sur une image
     aTab.addEventListener("click", () =>
-      makeCarrousel(media, carrouselCtn, carrousel, media_path, title, image, i)
+      makeCarrousel(
+        media,
+        carrouselCtn,
+        carrousel,
+        media_path,
+        title,
+        mediaConstruct,
+        i
+      )
     );
 
     // Tout est regroupé sous article
