@@ -13,6 +13,8 @@ const btnModal = document.getElementById("btn_modal");
 
 function displayModal() {
   contact.style.display = "block";
+  //Focus sur le premier élément pour faire marcher le tab
+  first.focus();
 }
 
 btnModal.addEventListener("click", () => displayModal());
@@ -23,6 +25,16 @@ function closeModal() {
   // On réaffiche les bons éléments
   contactForm.style.display = "flex";
   thanksMessage.style.display = "none";
+}
+
+// Evènement lorsqu'on clique sur Echap afin de fermer le modal form (accessibilité)
+document.onkeydown = checkKey;
+function checkKey(e) {
+  if (contact.style.display == "block") {
+    if (e.key == "Escape") {
+      closeModal();
+    }
+  }
 }
 
 croix.addEventListener("click", () => closeModal());
