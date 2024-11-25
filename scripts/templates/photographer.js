@@ -5,7 +5,7 @@ export function photographerTemplate(data) {
 
   function getUserCardDOM() {
     const a = document.createElement("a"); // pour créer le lien vers la page du photographe
-    a.href = `http://127.0.0.1:3000/photographer.html?id=${id}`; // on passe l'id du protographe via l'url
+    a.href = `/photographer.html?id=${id}`; // on passe l'id du protographe via l'url
     const article = document.createElement("article");
     a.setAttribute("aria-label", `Accéder au portefolio de ${name}`);
     const img = document.createElement("img");
